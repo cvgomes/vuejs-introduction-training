@@ -1,14 +1,15 @@
 <template>
   <div id="app">
     <PageHeader />
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 <script>
-import PageHeader from './components/PageHeader';
+// @ is an alias to /src
+import PageHeader from "@/components/PageHeader";
 export default {
-  name: 'app',
+  name: "app",
   components: {
     PageHeader
   }
