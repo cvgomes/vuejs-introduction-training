@@ -1,14 +1,40 @@
 <template>
   <div id="home-page">
-    <h1>Home Page</h1>
+    <TaskList :tasks="tasks" />
   </div>
 </template>
 
 <script>
+// @ is an alias to /src
+import TaskList from "@/components/TaskList";
+
 export default {
-  name: 'HomePage',
-  components: {}
-}
+  name: "HomePage",
+  components: {
+    TaskList
+  },
+  data() {
+    return {
+      tasks: [
+        {
+          id: 1,
+          title: "Task One",
+          completed: false
+        },
+        {
+          id: 2,
+          title: "Task Two",
+          completed: true
+        },
+        {
+          id: 3,
+          title: "Task Three",
+          completed: false
+        }
+      ]
+    };
+  }
+};
 </script>
 
 <style scoped>
