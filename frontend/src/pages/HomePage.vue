@@ -1,16 +1,19 @@
 <template>
   <div id="home-page">
+    <AddTask />
     <TaskList :tasks="tasks" />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import AddTask from "@/components/AddTask";
 import TaskList from "@/components/TaskList";
 
 export default {
   name: "HomePage",
   components: {
+    AddTask,
     TaskList
   },
   data() {
