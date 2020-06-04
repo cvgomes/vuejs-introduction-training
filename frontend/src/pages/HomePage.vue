@@ -1,6 +1,6 @@
 <template>
   <div id="home-page">
-    <AddTask />
+    <AddTask @add-task="addTodo" />
     <TaskList :tasks="tasks" />
   </div>
 </template>
@@ -36,6 +36,11 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    addTodo(task) {
+      this.tasks.push(task);
+    }
   }
 };
 </script>
