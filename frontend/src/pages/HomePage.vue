@@ -1,7 +1,7 @@
 <template>
   <div id="home-page">
-    <AddTask @add-task="addTodo" />
-    <TaskList :tasks="tasks" />
+    <AddTask @add-task="addTask" />
+    <TaskList :tasks="tasks" @delete-task="deleteTask"/>
   </div>
 </template>
 
@@ -38,8 +38,11 @@ export default {
     };
   },
   methods: {
-    addTodo(task) {
+    addTask(task) {
       this.tasks.push(task);
+    },
+    deleteTask(id) {
+      this.tasks = this.tasks.filter(task => task.id !== id);
     }
   }
 };
