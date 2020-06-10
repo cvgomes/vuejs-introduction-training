@@ -1,11 +1,16 @@
 <template>
-  <div class="task-item" :class="{'is-complete':task.completed}">{{task.title}}</div>
+  <div class="task-item" :class="{'is-complete':task.completed}" @click="markComplete">{{task.title}}</div>
 </template>
 
 <script>
 export default {
   name: "TaskItem",
-  props: ["task"]
+  props: ["task"],
+  methods: {
+    markComplete() {
+      this.task.completed = ! this.task.completed;
+    }
+  }
 };
 </script>
 
