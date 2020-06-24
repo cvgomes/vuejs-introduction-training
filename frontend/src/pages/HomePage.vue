@@ -7,8 +7,10 @@
 
 <script>
 // @ is an alias to /src
+import axios from "axios";
 import AddTask from "@/components/AddTask";
 import TaskList from "@/components/TaskList";
+import ConfigService from "@/services/ConfigService.js";
 
 export default {
   name: "HomePage",
@@ -16,33 +18,26 @@ export default {
     AddTask,
     TaskList
   },
+  created(){
+    axios.get("http://localhost:8080/tasks").then((response) => {
+      this.tasks = response.data;
+    })
+  },
   data() {
     return {
-      tasks: [
-        {
-          id: 1,
-          title: "Task One",
-          completed: false
-        },
-        {
-          id: 2,
-          title: "Task Two",
-          completed: true
-        },
-        {
-          id: 3,
-          title: "Task Three",
-          completed: false
-        }
-      ]
+      tasks: []
     };
   },
   methods: {
     addTask(task) {
-      this.tasks.push(task);
+      axios.post(ConfigService.api_url, task).then((response) => {
+        this.tasks.push(response.data);
+      })      
     },
     deleteTask(id) {
-      this.tasks = this.tasks.filter(task => task.id !== id);
+      axios.delete("http://localhost:8080/tasks/" + id).then(() => {
+        this.tasks = this.tasks.filter(task => task.id !== id);
+      });      
     }
   }
 };

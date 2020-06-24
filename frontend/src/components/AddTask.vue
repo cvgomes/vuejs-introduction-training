@@ -8,7 +8,6 @@
 </template>
 
 <script>
-import { v4 as uuid } from "uuid";
 export default {
   name: "AddTask",
   data() {
@@ -18,8 +17,10 @@ export default {
   },
   methods: {
     addTask() {
+      if(this.title === ""){
+        return;
+      }
       const newTask = {
-        id: uuid(),
         title: this.title,
         completed: false
       };

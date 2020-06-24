@@ -6,12 +6,16 @@
 </template>
 
 <script>
+import axios from "axios";
+import ConfigService from "@/services/ConfigService.js";
+
 export default {
   name: "TaskItem",
   props: ["task"],
   methods: {
     markComplete() {
       this.task.completed = ! this.task.completed;
+      axios.put(ConfigService.api_url + this.task.id, this.task);      
     }
   }
 };
